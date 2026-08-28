@@ -81,6 +81,34 @@ html{scroll-padding-top:calc(var(--header-height,110px) + 16px)}
 .contact-list>div{min-width:0;max-width:100%}
 .contact-list a{font-size:12px;color:#444444;overflow-wrap:anywhere;text-decoration:underline;text-underline-offset:3px}
 
+/* Identidad tipográfica v2: Fraunces (títulos) + Inter (texto) + JetBrains Mono (datos de rodaje). Misma paleta, sin nuevos colores. */
+:root{--font-display:'Fraunces',Georgia,serif;--font-body:'Inter',Arial,Helvetica,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,monospace}
+body{font-family:var(--font-body);-webkit-font-smoothing:antialiased}
+.brand{font-family:var(--font-display);font-weight:500}
+.hero h1,.section h2,.contact h2{font-family:var(--font-display)}
+.hero h1 em{font-family:var(--font-display);font-style:italic;font-weight:500;color:var(--accent)}
+.hero h1 em:after{background:var(--accent)}
+.eyebrow,.number,.frame-label,.film-bar,.hud-rec,.hud-tc,.project p,.button{font-family:var(--font-mono)}
+.button{text-transform:uppercase;letter-spacing:1px}
+.about-text p:first-child{font-family:var(--font-display);font-weight:400}
+
+/* Visor de cámara: enmarca el video-logo en loop como si fuera una toma en vivo. */
+.hud-rec,.hud-tc{position:absolute;top:16px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:6px;z-index:1}
+.hud-rec{left:18px}
+.hud-tc{right:18px;color:var(--muted);letter-spacing:1px}
+.hud-rec i{width:6px;height:6px;border-radius:50%;background:var(--accent);display:block}
+@media(prefers-reduced-motion:no-preference){.hud-rec i{animation:karanday-rec-pulse 1.8s ease-in-out infinite}}
+@keyframes karanday-rec-pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* Portafolio: placas de rodaje mientras no hay material final cargado; ya no piden disculpas, muestran estado. */
+.placeholder{background-color:var(--surface);background-image:repeating-linear-gradient(135deg,var(--line) 0 1px,transparent 1px 13px);border:1px solid var(--accent)}
+.placeholder span{font-family:var(--font-mono);font-weight:500}
+.placeholder small{font-family:var(--font-mono);letter-spacing:1px;text-transform:uppercase;font-size:10px}
+
+/* Grano cinematográfico muy sutil sobre el fondo; puramente atmosférico, no interfiere con el contenido. */
+body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;mix-blend-mode:overlay;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%25" height="100%25" filter="url(%23n)"/></svg>')}
+@media print{body::before{display:none}}
+
 /* Volver arriba: control discreto independiente de las animaciones de secciones. */
 .back-to-top{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:45;width:44px;height:44px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:rgba(8,8,8,.85);color:var(--ink);font-size:23px;line-height:1;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);transition:transform .3s var(--motion-ease),color .25s,border-color .25s}
 .back-to-top[hidden]{display:none}
